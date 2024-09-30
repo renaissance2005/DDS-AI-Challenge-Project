@@ -1,10 +1,10 @@
-🧠 Technical Specification Fulfillment Application 
-Welcome to this project page where a framework that leverages Retrieval-Augmented Generation (RAG) for analyzing and understanding complex PDF documents is used to extract relevant information from product brochure/datasheet to determine fulfillment of technical specification as required by tender requirement. This tool processes both textual data and images (like graphs or charts) extracted from PDFs to provide meaningful answers to user queries. It does so by combining document retrieval and advanced language model reasoning into one seamless pipeline.
+🧠 Multimodal RAG System: Analyzing Text & Images from PDF Documents
+Welcome to the Multimodal RAG System, a robust framework that leverages Retrieval-Augmented Generation (RAG) for analyzing and understanding complex PDF documents! This tool processes both textual data and images (like graphs or charts) extracted from PDFs to provide meaningful answers to user queries. It does so by combining document retrieval and advanced language model reasoning into one seamless pipeline.
 
 ✨ Key Features:
 🖼️ Multimodal Processing: Analyze a mix of text, tables, and images within PDFs.
 📄 PDF Document Handling: Automatically load and process PDF files with structured chunking.
-🔍 Intelligent Matching for Specification Required: Analyze the requirement of tender specification and fill up the relevant requirements if the product brochure/datasheet can fulfill it.
+🔍 Intelligent Question-Answering: Ask questions about the content, and the system retrieves and generates accurate answers.
 🚀 RAG Pipeline: Combines retrieval of relevant content and reasoning using large language models.
 📁 Project Structure
 This project follows a modular approach, making it clean, extensible, and easy to maintain. Each component has a distinct responsibility, ensuring that the system can be adapted and scaled as needed.
