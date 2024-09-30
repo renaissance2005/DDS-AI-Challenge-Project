@@ -1,4 +1,4 @@
-🧠 Multimodal RAG System: Analyzing Text & Images from PDF Documents
+🧠 Technical Specification Fulfillment Inspector
 Welcome to the Multimodal RAG System, a robust framework that leverages Retrieval-Augmented Generation (RAG) for analyzing and understanding complex PDF documents! This tool processes both textual data and images (like graphs or charts) extracted from PDFs to provide meaningful answers to user queries. It does so by combining document retrieval and advanced language model reasoning into one seamless pipeline.
 
 ✨ Key Features:
