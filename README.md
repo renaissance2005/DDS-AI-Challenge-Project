@@ -1,98 +1,89 @@
-🧠 Technical Specification Fulfillment Inspector
-Welcome to the Multimodal RAG System, a robust framework that leverages Retrieval-Augmented Generation (RAG) for analyzing and understanding complex PDF documents! This tool processes both textual data and images (like graphs or charts) extracted from PDFs to provide meaningful answers to user queries. It does so by combining document retrieval and advanced language model reasoning into one seamless pipeline.
 
-✨ Key Features:
-🖼️ Multimodal Processing: Analyze a mix of text, tables, and images within PDFs.
-📄 PDF Document Handling: Automatically load and process PDF files with structured chunking.
-🔍 Intelligent Question-Answering: Ask questions about the content, and the system retrieves and generates accurate answers.
-🚀 RAG Pipeline: Combines retrieval of relevant content and reasoning using large language models.
-📁 Project Structure
-This project follows a modular approach, making it clean, extensible, and easy to maintain. Each component has a distinct responsibility, ensuring that the system can be adapted and scaled as needed.
+# 📄 Technical Specification Fulfillment Application
 
-1. loaders.py: 📄 Document Loading
-This module is responsible for loading and processing PDF documents. It:
+This repository contains a Python-based application that processes both Excel and PDF files. It extracts content from the PDF file, stores it in a vector store (ChromaDB) and document store (Redis), and provides a Streamlit user interface for uploading files and processing them.
 
-Handles high-resolution extraction of both text and images.
-Chunks the content based on section titles, ensuring well-structured and manageable data for downstream processing.
-Key Function:
+## 🛠 Features
+- **PDF Content Extraction**: Extracts structured content from PDFs using the `UnstructuredPDFLoader`.
+- **Excel Integration**: Processes Excel files containing a column named 'Minimum Specification' to extract queries for further processing.
+- **Vector Store (ChromaDB)**: Stores the content into a vector store for efficient retrieval and embedding.
+- **Document Store (Redis)**: Stores the content into a Redis document store for flexible and fast retrieval.
+- **Streamlit UI**: Provides a user-friendly interface to upload both Excel and PDF files, and process the content.
+- **Persistence**: Utilizes persisted storage for both ChromaDB and Redis, allowing reuse across multiple sessions without needing to reprocess the data.
 
-python
-Copy code
-def load_pdf(file_path):
-    # Loads a PDF document, extracts text, tables, and images.
-2. models.py: 🧠 RAG Pipeline Definition
-This file defines the Retrieval-Augmented Generation (RAG) pipeline. The pipeline retrieves relevant context from the document and answers user queries using advanced language models.
+## 📂 Project Structure
 
-Incorporates custom functions to format multimodal prompts.
-Handles both document retrieval and language model reasoning.
-Key Function:
+The project consists of four main Python files:
 
-python
-Copy code
-def build_multimodal_rag():
-    # Constructs and returns the multimodal RAG chain for querying.
-3. prompts.py: 📝 Prompt Formatting
-In this module, we define how the input data (text, images, user queries) are combined into a format that the language model can understand. It:
+1. **`main.py`**:
+   - The entry point for the application, providing the Streamlit interface.
+   - Allows users to upload both an Excel file (with 'Minimum Specification') and a PDF file.
+   - Extracts PDF content, processes the data, and stores it in ChromaDB and Redis.
+   - Reuses persisted ChromaDB and Redis stores if they exist.
 
-Merges text and images into a cohesive prompt.
-Formats the user question alongside the document context for accurate answers.
-Key Function:
+2. **`image_processing.py`**:
+   - Handles encoding and summarizing of images (if present in the PDF).
+   - Generates image summaries for document retrieval.
 
-python
-Copy code
-def multimodal_prompt_function(data_dict):
-    # Formats the text and images into a structured prompt for the model.
-4. utils.py: 🛠️ Helper Functions
-This file contains utility functions that assist in data manipulation and modular processing. These utilities are reusable across different parts of the project.
+3. **`embeddings.py`**:
+   - Handles embedding generation using the `OllamaEmbeddings` model for any required text.
 
-Splits images and texts into separate components for processing.
-Key Function:
+4. **`evaluation.py`**:
+   - Provides evaluation logic to compare generated responses to expected responses.
+   - Rates responses for accuracy and completeness.
 
-python
-Copy code
-def split_image_text_types(data):
-    # Splits the loaded data into text and image components.
-5. main.py: 🎬 Entry Point & User Interface (Streamlit)
-This is the main entry point of the system where:
+## 🚀 How to Run the Application
 
-Users can upload PDF files via a simple Streamlit graphical user interface (GUI).
-The RAG pipeline is executed to analyze the document and respond to user queries.
-Streamlit Features:
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/renaissance2005/DDS-AI-Challenge-Project.git
+   cd DDS-AI-Challenge-Project
+   ```
 
-File upload: Choose a PDF document from your system.
-Query input: Ask questions about the uploaded document.
-Answer generation: Get responses from the RAG pipeline based on the document's content.
-🛠️ How to Run the Project
-Clone the repository:
+2. **Install dependencies**:
+   Ensure you have Python 3.10+, Ollama and Redis Server and install the required dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-bash
-Copy code
-git clone https://github.com/your-username/multimodal-rag-system.git
-cd multimodal-rag-system
-Install the dependencies: Make sure you have a virtual environment set up, then run:
+3. **Run the Streamlit application**:
+   Start the Streamlit app using:
+   ```bash
+   streamlit run main.py
+   ```
 
-bash
-Copy code
-pip install -r requirements.txt
-Run the Streamlit app: Launch the web interface to upload your PDF and ask questions:
+4. **Upload Excel and PDF Files**:
+   - Open the app in your browser.
+   - Upload an Excel file containing a 'Minimum Specification' column.
+   - Upload a PDF file for processing.
+   - Click the button to process and store the content in ChromaDB and Redis.
 
-bash
-Copy code
-streamlit run main.py
-Upload your PDF and interact with the system. Ask any relevant questions about the document, and the system will retrieve and generate the answers using the RAG pipeline.
+5. **Download the processed results**:
+   After processing, the content is stored in ChromaDB and Redis, ready for retrieval in future sessions.
 
-🔍 Example Usage
-Upload PDF: Upload any document containing text, tables, and images (e.g., a research paper, report, or company presentation).
-Enter Query: Ask a question like "What are the main categories of the features offered?".
-Receive Answer: The system analyzes the text and images and returns a comprehensive answer based on the document's content.
-📚 Technologies Used
-LangChain: For chaining together RAG processes.
-Streamlit: For providing a simple, user-friendly GUI.
-OpenAI GPT: As the backend for language understanding and reasoning.
-Python: The core language for building this system.
-🙌 Contributing
-We welcome contributions! Feel free to fork the repository, make enhancements, and submit a pull request. Let's make document analysis smarter and more efficient together! 🚀
+## 🧑‍💻 Tech Stack
 
-📄 License
-This project is licensed under the MIT License. Feel free to use, modify, and distribute this code.
+- **Python**: Core programming language.
+- **ChromaDB**: Used as a vector store for efficient document embedding and retrieval.
+- **Redis**: Used as a document store to store the PDF content.
+- **Streamlit**: Provides an interactive UI for file uploads and processing.
+- **LangChain Community Tools**: Used for PDF extraction and unstructured data processing.
+
+## 🛡️ Error Handling
+
+- The program checks that both an Excel and a PDF file are uploaded before processing.
+- The Excel file must contain a 'Minimum Specification' column.
+- Error messages are displayed if any issues arise during file upload or processing.
+
+## 🌟 Future Improvements
+
+- Add agents to check and refine the results.
+- Incorporate options to use more powerful multimodal language models.
+- Extend the use of embeddings for more advanced document search capabilities.
+
+## 📬 Contact
+
+Feel free to reach out if you have any questions or suggestions:
+- **Email**: davidkeat@graduate.utm.my
+- **GitHub**: [yourusername](https://github.com/renaissance2005)
 
