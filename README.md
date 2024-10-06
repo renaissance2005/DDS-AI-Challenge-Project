@@ -13,7 +13,7 @@ This repository contains a Python-based application that processes both Excel an
 
 ## 📂 Project Structure
 
-The project consists of four main Python files:
+The project consists of the following files. For user to use the program, only the files in item 3 are required:
 
 1. **`populatedata.ipynb`**:
    - This is run on Jupyter Notebook for testing and debugging during development.
@@ -65,12 +65,13 @@ The project consists of four main Python files:
 - **Python**: Core programming language.
 - **ChromaDB**: Used as a vector store for efficient document embedding and retrieval.
 - **Redis**: Used as a document store to store the PDF content.
+- **Ollama**: Installed and run 2 models: llama3.1:8b (inference) and llava-llama3 (vision).
 - **Streamlit**: Provides an interactive UI for file uploads and processing.
 - **LangChain Community Tools**: Used for PDF extraction and unstructured data processing.
 
 ## 🛡️ Error Handling
 
-- The program checks that both an Excel and a PDF file are uploaded before processing.
+- The program checks that both an Excel is uploaded before processing.
 - The Excel file must contain a 'Minimum Specification' column.
 - Error messages are displayed if any issues arise during file upload or processing.
 
