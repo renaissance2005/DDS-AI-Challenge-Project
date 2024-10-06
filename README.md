@@ -35,10 +35,6 @@ The project consists of four main Python files:
    - A streamlit command is used to call the file chktechspec.py (streamlit run chktechspec.py).
    - User can download the processed file in the standard name of 'Updated-Sample-TenderDoc.xlsx'.
 
-4. **`evaluation.py`**:
-   - Provides evaluation logic to compare generated responses to expected responses.
-   - Rates responses for accuracy and completeness.
-
 ## 🚀 How to Run the Application
 
 1. **Clone the repository**:
