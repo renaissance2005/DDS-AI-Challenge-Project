@@ -79,7 +79,7 @@ The project consists of the following files. For user to use the program, only t
 
 - Add agents to check and refine the results.
 - Incorporate options to use more powerful multimodal language models.
-- Extend the use of embeddings for more advanced document search capabilities.
+- Provide functionality to upload and process multiple brochures and datasheets.
 
 ## 📬 Contact
 
