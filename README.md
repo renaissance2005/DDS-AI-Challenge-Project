@@ -15,18 +15,25 @@ This repository contains a Python-based application that processes both Excel an
 
 The project consists of four main Python files:
 
-1. **`main.py`**:
-   - The entry point for the application, providing the Streamlit interface.
-   - Allows users to upload both an Excel file (with 'Minimum Specification') and a PDF file.
+1. **`populatedata.ipynb`**:
+   - This is run on Jupyter Notebook for testing and debugging during development.
+   - Loaded the brochure HP-dataset.pdf as example document which should be in the same folder of this file. 
    - Extracts PDF content, processes the data, and stores it in ChromaDB and Redis.
-   - Reuses persisted ChromaDB and Redis stores if they exist.
+   - Data extracted include text, table and image (multimodal).
+   - This file can be run in Jupyter notebook.
 
-2. **`image_processing.py`**:
-   - Handles encoding and summarizing of images (if present in the PDF).
-   - Generates image summaries for document retrieval.
+2. **`tsfa.py`**:
+   - The evaluation of the program is done using this code by comparing the ‘Expected Response’ and ‘Generated Response’ columns from an excel file with relevance given a score from 1-3.
+   - The input file Sample-TenderDoc.xlsx should be in the same folder of this file. 
+   - Take note that the processing and storage of brochure/datasheet (company documents) are not done here as it was implemented by the by populatedata.ipynb.
+   - This file can be run using python command. 
 
-3. **`embeddings.py`**:
-   - Handles embedding generation using the `OllamaEmbeddings` model for any required text.
+3. **`chktechspec.py & process.py`**:
+   - This is the actual program where the user can run by giving an excel file with at least a column named ‘Minimum Specification’.
+   - User can upload any arbitrary excel file as long as it contains a column named 'Minimum Specification'. The file will generate the same file with a generated column called 'Generated Specification'. 
+   - A new file will be generated with the column ‘Generated Response’ which the user can use as reference for specification fulfillment of the existing product brochure/datasheet.
+   - A streamlit command is used to call the file chktechspec.py (streamlit run chktechspec.py).
+   - User can download the processed file in the standard name of 'Updated-Sample-TenderDoc.xlsx'.
 
 4. **`evaluation.py`**:
    - Provides evaluation logic to compare generated responses to expected responses.
@@ -49,17 +56,13 @@ The project consists of four main Python files:
 3. **Run the Streamlit application**:
    Start the Streamlit app using:
    ```bash
-   streamlit run main.py
+   streamlit run chktechspec.py
    ```
 
-4. **Upload Excel and PDF Files**:
+4. **Upload an Excel File**:
    - Open the app in your browser.
    - Upload an Excel file containing a 'Minimum Specification' column.
-   - Upload a PDF file for processing.
-   - Click the button to process and store the content in ChromaDB and Redis.
-
-5. **Download the processed results**:
-   After processing, the content is stored in ChromaDB and Redis, ready for retrieval in future sessions.
+   - Click the download button after the file is processed. 
 
 ## 🧑‍💻 Tech Stack
 
@@ -85,5 +88,5 @@ The project consists of four main Python files:
 
 Feel free to reach out if you have any questions or suggestions:
 - **Email**: davidkeat@graduate.utm.my
-- **GitHub**: [yourusername](https://github.com/renaissance2005)
+- **GitHub**: (https://github.com/renaissance2005/DDS-AI-Challenge-Project)
 
